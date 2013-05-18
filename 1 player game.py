@@ -373,7 +373,7 @@ def main():
     all_sprites_list.add(fire)
 
     #musiqua
-    pygame.mixer.music.load("comws.ogg")
+    pygame.mixer.music.load("phoenix.ogg")
     pygame.mixer.music.play(loops = 10, start=0.0)
 
     #instructions
@@ -413,7 +413,7 @@ def main():
     def luciferkilledyou():
         if pygame.sprite.collide_rect(player, lucifer) == True:
             dead()
-            pygame.mixer.music.play(loops = 0, start=0.0)
+            #pygame.mixer.music.play(loops = 0, start=0.0)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:  #you want to go left
                   player.changespeed_x(0)    #so go left
@@ -429,7 +429,7 @@ def main():
             font = pygame.font.Font(None, 60)
             deadWords = font.render(deadMessage, 1, (255, 255, 255))
             screen.blit(deadWords, (230, 230))
-            pygame.mixer.music.play(loops = 0, start=0.0)
+            #pygame.mixer.music.play(loops = 0, start=0.0)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:  #you will never move again
                     player.changespeed_x(0)
@@ -474,6 +474,9 @@ def main():
             player.rect.x = 1
         if player.rect.x <= 0:
             player.rect.x = 698
+        if player.rect.y >= 500:
+            player.rect.y = 490
+
         if lucifer.rect.x >= 700:
             lucifer.rect.x = 1
         if lucifer.rect.x <= 0:
@@ -482,7 +485,7 @@ def main():
             lucifer.rect.y = 1
         if lucifer.rect.y <= 0:
             lucifer.rect.y = 498
-
+            
         if dean.rect.x >= 700:
             dean.rect.x = 1
         if dean.rect.x <= 0:
@@ -528,7 +531,7 @@ def main():
         all_sprites_list.draw(screen)
 
         #don't explode please 
-        pygame.time.Clock().tick(50)
+        pygame.time.Clock().tick(35)
 
 
         #show the world that you've moved 6 pixels you should be proud 

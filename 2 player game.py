@@ -34,7 +34,7 @@ def main():
             self.rect.y = y
             
     #luicfer thingys
-    luciferSprite = pygame.image.load("lucifermid.png").convert()
+    luciferSprite = pygame.image.load("lucifersmall.png").convert()
     class Lucifer(pygame.sprite.Sprite):
         #ATTRIBUTES
         #speedish movementy things
@@ -290,7 +290,7 @@ def main():
     all_sprites_list.add(fire)
 
     #musiqua
-    pygame.mixer.music.load("comws.ogg")
+    pygame.mixer.music.load("phoenix.ogg")
     pygame.mixer.music.play(loops = 10, start=0.0)
 
     #instructions
