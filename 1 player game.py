@@ -1,5 +1,3 @@
-deadCounter = 0
-
 def main():
 
     import pygame
@@ -21,7 +19,7 @@ def main():
     bgred = [150, 0, 0]
     platformred = [200, 0, 0]
 
-    #pygame.movie.Movie.play('preview.mpg')
+    pygame.movie.Movie.load('animation.mpg')
     #pygame.movie.Movie.stop('preview.mpg')
     
     #how many times have you died
@@ -383,13 +381,6 @@ def main():
         instructions = font.render(howTo, 1, (255, 255, 255))
         screen.blit(instructions, (65, 10))
 
-    #did you die yet
-    deadMessage = 'GAME OVER'
-    def dead():
-        font = pygame.font.Font(None, 60)
-        deadWords = font.render(deadMessage, 1, (255, 255, 255))
-        screen.blit(deadWords, (230, 230))
-
     #did cas save dean yet
     winMessage = 'YOU RAISED HIM FROM PERDITION!'
     def win():
@@ -410,6 +401,13 @@ def main():
                 if event.key == pygame.K_DOWN:
                     player.changespeed_y(0)
         
+    #did you die yet
+    deadMessage = 'GAME OVER'
+    def dead():
+        font = pygame.font.Font(None, 60)
+        deadWords = font.render(deadMessage, 1, (255, 255, 255))
+        screen.blit(deadWords, (230, 230))
+
     def luciferkilledyou():
         if pygame.sprite.collide_rect(player, lucifer) == True:
             dead()
@@ -519,7 +517,7 @@ def main():
         #show instructions
         texts()
         
-        #murder
+        #murder / salvation
         luciferkilledyou()
         firekilledyou()
         cassaveddean()
@@ -533,12 +531,10 @@ def main():
         #don't explode please 
         pygame.time.Clock().tick(35)
 
-
         #show the world that you've moved 6 pixels you should be proud 
         pygame.display.flip() 
 
     #don't make IDLE idle
     pygame.quit()
-
 
 main()
