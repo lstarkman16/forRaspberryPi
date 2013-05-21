@@ -1,9 +1,19 @@
+import pygame
+import random
+
+pygame.init()
+
+#musiqua
+pygame.mixer.music.load("phoenix.ogg")
+pygame.mixer.music.play(loops = -1, start=0.0)
+
+
 def main():
 
-    import pygame
-    import random
+    #import pygame
+    #import random
 
-    pygame.init() 
+    #pygame.init() 
 
     #how big is this going to be
     pageHeight = 485
@@ -19,8 +29,8 @@ def main():
     bgred = [150, 0, 0]
     platformred = [200, 0, 0]
 
-    pygame.movie.Movie.load('animation.mpg')
-    #pygame.movie.Movie.stop('preview.mpg')
+    #pygame.movie.Movie.play('animation.mpg')
+    #pygame.movie.Movie.stop('animation.mpg')
     
     #how many times have you died
     #deadCounter = 0
@@ -118,6 +128,10 @@ def main():
                 screen.blit(luciferSprite, lucifer.rect)
                 
             elif pygame.sprite.collide_rect(lucifer, player) == True:
+                HoriWhichWay = [0, 0]
+                VertWhichWay = [0, 0]
+
+            elif pygame.sprite.collide_rect(dean, player) == True:
                 HoriWhichWay = [0, 0]
                 VertWhichWay = [0, 0]
 
@@ -371,8 +385,8 @@ def main():
     all_sprites_list.add(fire)
 
     #musiqua
-    pygame.mixer.music.load("phoenix.ogg")
-    pygame.mixer.music.play(loops = 10, start=0.0)
+    #pygame.mixer.music.load("phoenix.ogg")
+    #pygame.mixer.music.play(loops = 10, start=0.0)
 
     #instructions
     howTo = 'Arrows to move, avoid Lucifer, catch Dean, R to restart.'
@@ -391,6 +405,7 @@ def main():
     def cassaveddean():
         if pygame.sprite.collide_rect(player, dean) == True:
             win()
+            pygame.time.delay(500)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:  #you want to go left
                   player.changespeed_x(0)    #so go left
@@ -400,18 +415,19 @@ def main():
                     player.changespeed_y(0)
                 if event.key == pygame.K_DOWN:
                     player.changespeed_y(0)
-        
+              
     #did you die yet
     deadMessage = 'GAME OVER'
     def dead():
         font = pygame.font.Font(None, 60)
         deadWords = font.render(deadMessage, 1, (255, 255, 255))
         screen.blit(deadWords, (230, 230))
-
+        
     def luciferkilledyou():
         if pygame.sprite.collide_rect(player, lucifer) == True:
             dead()
             #pygame.mixer.music.play(loops = 0, start=0.0)
+            pygame.time.delay(500)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:  #you want to go left
                   player.changespeed_x(0)    #so go left
@@ -428,6 +444,7 @@ def main():
             deadWords = font.render(deadMessage, 1, (255, 255, 255))
             screen.blit(deadWords, (230, 230))
             #pygame.mixer.music.play(loops = 0, start=0.0)
+            #pygame.time.delay(500)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:  #you will never move again
                     player.changespeed_x(0)
